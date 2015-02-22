@@ -1,0 +1,31 @@
+{
+  "generator-angularjs-library": {
+    "props": {
+      "author": {
+        "name": "theborakompanioni",
+        "email": "theborakompanioni+tbk-angular-readable-time@gmail.com"
+      },
+      "libraryName": {
+        "original": "tbk-readable-time",
+        "camelized": "tbk.readableTime",
+        "dasherized": "tbk-readable-time",
+        "slugified": "tbk-readable-time",
+        "parts": [
+          "tbk",
+          "angular",
+          "readable",
+          "time"
+        ]
+      },
+      "includeModuleDirectives": true,
+      "includeModuleFilters": true,
+      "includeModuleServices": false,
+      "includeAngularModuleResource": false,
+      "includeAngularModuleCookies": false,
+      "includeAngularModuleSanitize": false,
+      "librarySrcDirectory": "src/tbk-angular-readable-time",
+      "libraryUnitTestDirectory": "test/unit/tbk-angular-readable-time",
+      "libraryUnitE2eDirectory": "test/e2e/tbk-angular-readable-time"
+    }
+  }
+}
