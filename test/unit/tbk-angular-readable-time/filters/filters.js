@@ -29,22 +29,43 @@ describe('filters', function () {
 
     it('should correctly format time recursively', function () {
 
-      expect(tbkReadableTimeRecursive('1', 0)).to.eql('1 millisecond');
-      expect(tbkReadableTimeRecursive('1001', 0)).to.eql('1 second 1 millisecond');
-      expect(tbkReadableTimeRecursive('61001', 0)).to.eql('1 minute 1 second 1 millisecond');
-      expect(tbkReadableTimeRecursive('62001', 0)).to.eql('1 minute 2 seconds 1 millisecond');
+      expect(tbkReadableTimeRecursive('1')).to.eql('1 millisecond');
+      expect(tbkReadableTimeRecursive('1001')).to.eql('1 second 1 millisecond');
+      expect(tbkReadableTimeRecursive('61001')).to.eql('1 minute 1 second 1 millisecond');
+      expect(tbkReadableTimeRecursive('62001')).to.eql('1 minute 2 seconds 1 millisecond');
 
-      expect(tbkReadableTimeRecursive('3662001', 0)).to.eql(
+      expect(tbkReadableTimeRecursive('3662001')).to.eql(
         '1 hour 1 minute 2 seconds 1 millisecond'
       );
-      expect(tbkReadableTimeRecursive(4 * day + 25 * minute, 0)).to.eql(
+      expect(tbkReadableTimeRecursive(4 * day + 25 * minute)).to.eql(
         '4 days 25 minutes'
       );
-      expect(tbkReadableTimeRecursive(2 * year + 23 * hour, 0)).to.eql(
+      expect(tbkReadableTimeRecursive(2 * year + 23 * hour)).to.eql(
         '2 years 23 hours'
       );
-      expect(tbkReadableTimeRecursive(2 * year + 23 * hour + 999, 0)).to.eql(
+      expect(tbkReadableTimeRecursive(2 * year + 23 * hour + 999)).to.eql(
         '2 years 23 hours 999 milliseconds'
+      );
+      expect(tbkReadableTimeRecursive(2 * year + 23 * hour + 999, 'second')).to.eql(
+        '2 years 23 hours'
+      );
+      expect(tbkReadableTimeRecursive(2 * year + 23 * hour + 2999, 'second')).to.eql(
+        '2 years 23 hours 2 seconds'
+      );
+      expect(tbkReadableTimeRecursive(2 * year + 1 * month + 2999)).to.eql(
+        '2 years 1 month 2 seconds 999 milliseconds'
+      );
+      expect(tbkReadableTimeRecursive(2 * year + 23 * hour + 2999, 'year')).to.eql(
+        '2 years'
+      );
+      expect(tbkReadableTimeRecursive(1 * year - day, 'year')).to.eql(
+        '11 months'
+      );
+      expect(tbkReadableTimeRecursive(1 * minute - second, 'minute')).to.eql(
+        '59 seconds'
+      );
+      expect(tbkReadableTimeRecursive(1 * second - 1, 'year')).to.eql(
+        '999 milliseconds'
       );
     });
 

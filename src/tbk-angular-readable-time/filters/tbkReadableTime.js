@@ -51,17 +51,23 @@
       '$filter', 'tbkReadableTimeFilter', 'tbkReadableTimeConfig',
       function ($filter, tbkReadableTime, tbkReadableTimeConfig) {
         var time = tbkReadableTimeConfig.time;
-        return function (milliseconds) {
+        return function (timeInMilliseconds, minUnit) {
+          var options = {
+            minMilliseconds: time[minUnit] > 0 ? time[minUnit] : 0
+          };
+
           var self = $filter('tbkReadableTimeRecursive');
 
           var makeRecursiveCall = function (millisecons, scale) {
             var delta = Math.floor(milliseconds / scale);
             var rest = milliseconds - delta * scale;
 
-            return tbkReadableTime(milliseconds - rest, 0) + (rest > 0 ? ' ' + self(rest) : '');
+            var lastStep = rest <= options.minMilliseconds || delta === 0;
+            return tbkReadableTime(milliseconds - rest, 0) + (lastStep ? '' : ' ' + self(rest, minUnit));
           };
 
-          milliseconds = Math.round(milliseconds);
+          var milliseconds = Math.round(timeInMilliseconds);
+
           switch (false) {
             case milliseconds >= time.second:
               return tbkReadableTime(milliseconds, 0);
