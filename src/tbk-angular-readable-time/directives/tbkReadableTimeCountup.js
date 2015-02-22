@@ -6,6 +6,7 @@
         scope: {
           start: '@',
           interval: '@',
+          minUnit: '@',
           reverse: '@'
         },
         controller: ['$scope', function ($scope) {
@@ -14,6 +15,7 @@
         template: '<span tbk-readable-time-countdown' +
         ' data-start="{{start}}" ' +
         ' data-interval="{{interval}}" ' +
+        ' data-min-unit="{{minUnit}}" ' +
         ' data-reverse="{{!reverse}}"></span>'
       };
 

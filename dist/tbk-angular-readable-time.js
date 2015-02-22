@@ -41,6 +41,7 @@
         scope: {
           start: '@',
           interval: '@',
+          minUnit: '@',
           reverse: '@'
         },
         controller: ['$scope', '$interval', function ($scope, $interval) {
@@ -54,7 +55,7 @@
             $scope.milliseconds = value();
           }, $scope.interval || 1000);
         }],
-        template: '<span>{{ milliseconds | tbkReadableTimeRecursive }}</span>'
+        template: '<span>{{ milliseconds | tbkReadableTimeRecursive:minUnit }}</span>'
       };
 
       return d;
@@ -71,6 +72,7 @@
         scope: {
           start: '@',
           interval: '@',
+          minUnit: '@',
           reverse: '@'
         },
         controller: ['$scope', function ($scope) {
@@ -79,6 +81,7 @@
         template: '<span tbk-readable-time-countdown' +
         ' data-start="{{start}}" ' +
         ' data-interval="{{interval}}" ' +
+        ' data-min-unit="{{minUnit}}" ' +
         ' data-reverse="{{!reverse}}"></span>'
       };
 

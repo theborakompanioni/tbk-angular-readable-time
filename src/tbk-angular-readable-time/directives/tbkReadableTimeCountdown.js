@@ -6,6 +6,7 @@
         scope: {
           start: '@',
           interval: '@',
+          minUnit: '@',
           reverse: '@'
         },
         controller: ['$scope', '$interval', function ($scope, $interval) {
@@ -19,7 +20,7 @@
             $scope.milliseconds = value();
           }, $scope.interval || 1000);
         }],
-        template: '<span>{{ milliseconds | tbkReadableTimeRecursive }}</span>'
+        template: '<span>{{ milliseconds | tbkReadableTimeRecursive:minUnit }}</span>'
       };
 
       return d;
